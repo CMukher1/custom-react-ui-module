@@ -19,8 +19,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Debug GitHub ref
-        run: echo "Current branch or tag - ${GITHUB_REF_NAME}"
       - name: Install dependencies
         run: yarn install
       - name: Run tests with coverage
@@ -30,3 +28,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.branch.name=${{ github.ref_name }}
