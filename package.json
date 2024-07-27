@@ -12,7 +12,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "rollup -c",
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc && rollup -c",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -21,7 +22,7 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-     "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
