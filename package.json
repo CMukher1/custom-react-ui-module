@@ -1,6 +1,6 @@
 {
   "name": "@cmukher1/custom-react-ui-module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
     "build": "yarn clean && tsc && rollup -c",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --colors",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{js,ts,tsx}\" --fix",
     "typecheck": "tsc --noEmit",
@@ -24,7 +24,8 @@
     "build-storybook": "storybook build",
     "prepublishOnly": "yarn build",
     "format": "prettier --write \"src/**/*.{js,ts,tsx,json,md}\"",
-    "precommit": "lint-staged",
+    "test:coverage:check": "jest --coverage --coverageThreshold=\"{\\\"global\\\":{\\\"statements\\\":80,\\\"branches\\\":80,\\\"functions\\\":80,\\\"lines\\\":80}}\" --passWithNoTests",
+    "precommit": "lint-staged && yarn test:coverage:check",
     "prepare": "husky install"
   },
   "lint-staged": {
