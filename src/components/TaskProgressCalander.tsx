@@ -3,25 +3,44 @@ import { ProgressCircleComponent } from "./common/ProgressCircle";
 import { Button } from "./common/Button";
 import { Box } from "@mui/material";
 import colors from "../utils/colors";
-import { HeaderTextSubTextComponent } from "./common/HeaderTextSubText";
+import { HeaderTestSubTextWithIcons } from "./common/HeaderTextSubTextWithIcons";
+import { IconType } from "react-icons";
 
-interface TaskProgressProps {
+interface TaskProgressCalanderProps {
   taskDone: number;
   totalTasks: number;
   date: string;
   className?: string;
   buttonType?: "contained" | "outlined" | "text";
   isRounded?: boolean;
+  headerText: string;
+  subText: string;
+  SubIcon: IconType;
+  TernaryIcon: IconType;
+  ternaryText?: string;
+  headerSize?: string;
+  headerColor?: string;
+  subHeaderSize?: string;
+  subHeaderColor?: string;
 }
 
-export const TaskProgress = ({
+export const TaskProgressCalander = ({
   taskDone,
   totalTasks,
   date,
-  className,
   buttonType = "contained",
   isRounded = true,
-}: TaskProgressProps) => {
+  headerText,
+  subText,
+  SubIcon,
+  TernaryIcon,
+  ternaryText,
+  headerSize = "1.5rem",
+  headerColor = colors.primary,
+  subHeaderSize = "0.9rem",
+  subHeaderColor = colors.dark,
+  className = "",
+}: TaskProgressCalanderProps) => {
   const percentage = (taskDone / totalTasks) * 100;
 
   return (
@@ -32,21 +51,17 @@ export const TaskProgress = ({
     >
       <Box className="flex justify-between items-center w-full">
         <Box className="flex flex-col">
-          <HeaderTextSubTextComponent
-            headerText={`Task Progress`}
-            subText={`${taskDone}/${totalTasks} task done`}
-            headerColor={colors.light}
-            subHeaderColor={colors.lightGrey}
+          <HeaderTestSubTextWithIcons
+            headerText={headerText}
+            subText={subText}
+            SubIcon={SubIcon}
+            TernaryIcon={TernaryIcon}
+            ternaryText={ternaryText}
+            headerSize={headerSize}
+            headerColor={headerColor}
+            subHeaderSize={subHeaderSize}
+            subHeaderColor={subHeaderColor}
           />
-          <Box className="w-28 ml-4">
-            <Button
-              label={date}
-              buttonType={buttonType}
-              textColor={colors.light}
-              isRounded={isRounded}
-              style={{ padding: "0 15px", marginLeft: "2px" }}
-            />
-          </Box>
         </Box>
         <Box className="flex items-center">
           <ProgressCircleComponent
@@ -60,5 +75,3 @@ export const TaskProgress = ({
     </TaskProgressCardComponent>
   );
 };
-
-export default TaskProgress;

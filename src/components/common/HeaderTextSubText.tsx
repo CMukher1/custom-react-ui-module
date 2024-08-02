@@ -4,6 +4,7 @@ import colors from "../../utils/colors";
 interface HeaderTextSubTextProps {
   headerText: string;
   subText: string;
+  ternaryText?: string;
   headerSize?: string;
   headerColor?: string;
   subHeaderSize?: string;
@@ -14,6 +15,7 @@ interface HeaderTextSubTextProps {
 export const HeaderTextSubTextComponent = ({
   headerText,
   subText,
+  ternaryText,
   headerSize = "1.5rem",
   headerColor = colors.primary,
   subHeaderSize = "0.9rem",
@@ -42,6 +44,18 @@ export const HeaderTextSubTextComponent = ({
       >
         {subText}
       </Typography>
+      {ternaryText && (
+        <Typography
+          variant="body1"
+          style={{
+            fontSize: subHeaderSize,
+            color: subHeaderColor,
+            marginLeft: "0.2rem",
+          }}
+        >
+          {ternaryText}
+        </Typography>
+      )}
     </Box>
   );
 };
