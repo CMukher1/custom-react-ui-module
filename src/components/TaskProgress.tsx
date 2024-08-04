@@ -12,6 +12,7 @@ interface TaskProgressProps {
   className?: string;
   buttonType?: "contained" | "outlined" | "text";
   isRounded?: boolean;
+  dataTestId?: string;
 }
 
 export const TaskProgress = ({
@@ -21,6 +22,7 @@ export const TaskProgress = ({
   className,
   buttonType = "contained",
   isRounded = true,
+  dataTestId = "task-progress",
 }: TaskProgressProps) => {
   const percentage = (taskDone / totalTasks) * 100;
 
@@ -29,31 +31,47 @@ export const TaskProgress = ({
       isDark
       roundedCorner="medium"
       className={className}
+      dataTestId={dataTestId}
     >
-      <Box className="flex justify-between items-center w-full">
-        <Box className="flex flex-col">
+      <Box
+        className="flex justify-between items-center w-full"
+        data-testid={`${dataTestId}-content`}
+      >
+        <Box
+          className="flex flex-col"
+          data-testid={`${dataTestId}-left-content`}
+        >
           <HeaderTextSubTextComponent
             headerText={`Task Progress`}
             subText={`${taskDone}/${totalTasks} task done`}
             headerColor={colors.light}
             subHeaderColor={colors.lightGrey}
+            dataTestId={`${dataTestId}-header`}
           />
-          <Box className="w-28 ml-4">
+          <Box
+            className="w-28 ml-4"
+            data-testid={`${dataTestId}-button-container`}
+          >
             <Button
               label={date}
               buttonType={buttonType}
               textColor={colors.light}
               isRounded={isRounded}
               style={{ padding: "0 15px", marginLeft: "2px" }}
+              dataTestId={`${dataTestId}-date-button`}
             />
           </Box>
         </Box>
-        <Box className="flex items-center">
+        <Box
+          className="flex items-center"
+          data-testid={`${dataTestId}-progress-container`}
+        >
           <ProgressCircleComponent
             percentage={percentage}
             circleWidth={60}
             circleHeight={60}
             isLight
+            dataTestId={`${dataTestId}-progress-circle`}
           />
         </Box>
       </Box>

@@ -10,6 +10,7 @@ interface ProgressCircleProps {
   circleHeight?: number;
   isLight?: boolean;
   className?: string;
+  dataTestId?: string;
 }
 
 const BackgroundCircle = styled(CircularProgress)({
@@ -46,6 +47,7 @@ export const ProgressCircleComponent = ({
   circleHeight = 60,
   isLight = false,
   className,
+  dataTestId = "progress-circle",
 }: ProgressCircleProps) => {
   const fontSize = Math.min(circleWidth, circleHeight) / 4;
   const textColor = isLight ? colors.light : colors.primary;
@@ -54,20 +56,26 @@ export const ProgressCircleComponent = ({
     <div
       className={`relative w-${circleWidth} h-${circleHeight} flex items-center justify-center ${className}`}
       style={{ position: "relative" }}
+      data-testid={dataTestId}
     >
       <BackgroundCircle
         variant="determinate"
         value={100}
         size={Math.min(circleWidth, circleHeight)}
+        data-testid={`${dataTestId}-background`}
       />
       <ProgressCircle
         percentage={percentage}
         variant="determinate"
         value={percentage}
         size={Math.min(circleWidth, circleHeight)}
+        data-testid={`${dataTestId}-foreground`}
       />
       {showText && (
-        <ProgressText style={{ fontSize, color: textColor }}>
+        <ProgressText
+          style={{ fontSize, color: textColor }}
+          data-testid={`${dataTestId}-text`}
+        >
           {formatWholeNumber(percentage)}%
         </ProgressText>
       )}

@@ -1,9 +1,8 @@
 import { TaskProgressCardComponent } from "./common/TaskProgressCard";
 import { ProgressCircleComponent } from "./common/ProgressCircle";
-import { Button } from "./common/Button";
 import { Box } from "@mui/material";
 import colors from "../utils/colors";
-import { HeaderTestSubTextWithIcons } from "./common/HeaderTextSubTextWithIcons";
+import { HeaderTextSubTextWithIcons } from "./common/HeaderTextSubTextWithIcons";
 import { IconType } from "react-icons";
 
 interface TaskProgressCalanderProps {
@@ -22,14 +21,12 @@ interface TaskProgressCalanderProps {
   headerColor?: string;
   subHeaderSize?: string;
   subHeaderColor?: string;
+  dataTestId?: string;
 }
 
 export const TaskProgressCalander = ({
   taskDone,
   totalTasks,
-  date,
-  buttonType = "contained",
-  isRounded = true,
   headerText,
   subText,
   SubIcon,
@@ -40,6 +37,7 @@ export const TaskProgressCalander = ({
   subHeaderSize = "0.9rem",
   subHeaderColor = colors.dark,
   className = "",
+  dataTestId = "task-progress-calander",
 }: TaskProgressCalanderProps) => {
   const percentage = (taskDone / totalTasks) * 100;
 
@@ -48,10 +46,17 @@ export const TaskProgressCalander = ({
       isDark
       roundedCorner="medium"
       className={className}
+      dataTestId={dataTestId}
     >
-      <Box className="flex justify-between items-center w-full">
-        <Box className="flex flex-col">
-          <HeaderTestSubTextWithIcons
+      <Box
+        className="flex justify-between items-center w-full"
+        data-testid={`${dataTestId}-content`}
+      >
+        <Box
+          className="flex flex-col"
+          data-testid={`${dataTestId}-left-content`}
+        >
+          <HeaderTextSubTextWithIcons
             headerText={headerText}
             subText={subText}
             SubIcon={SubIcon}
@@ -61,14 +66,19 @@ export const TaskProgressCalander = ({
             headerColor={headerColor}
             subHeaderSize={subHeaderSize}
             subHeaderColor={subHeaderColor}
+            dataTestId={`${dataTestId}-header`}
           />
         </Box>
-        <Box className="flex items-center">
+        <Box
+          className="flex items-center"
+          data-testid={`${dataTestId}-progress-container`}
+        >
           <ProgressCircleComponent
             percentage={percentage}
             circleWidth={60}
             circleHeight={60}
             isLight
+            dataTestId={`${dataTestId}-progress-circle`}
           />
         </Box>
       </Box>
