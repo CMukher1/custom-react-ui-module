@@ -11,6 +11,7 @@ export interface ButtonProps extends Omit<MuiButtonProps, "variant"> {
   buttonType?: "contained" | "outlined" | "text";
   backgroundColor?: string;
   textColor?: string;
+  dataTestId?: string;
 }
 
 const roundedStyles = {
@@ -25,6 +26,7 @@ export const Button = ({
   backgroundColor = colors.primary,
   textColor = colors.light,
   className,
+  dataTestId = "button",
   ...props
 }: ButtonProps) => (
   <MuiButton
@@ -42,6 +44,7 @@ export const Button = ({
       },
     }}
     className={className}
+    data-testid={dataTestId}
     {...props}
   >
     {label}

@@ -7,6 +7,7 @@ interface TaskProgressCardProps {
   roundedCorner?: "none" | "medium" | "large";
   children?: React.ReactNode;
   className?: string;
+  dataTestId?: string;
 }
 
 const getRoundedClass = (roundedCorner: "none" | "medium" | "large") => {
@@ -26,6 +27,7 @@ export const TaskProgressCardComponent = ({
   roundedCorner = "none",
   children,
   className,
+  dataTestId = "task-progress-card",
 }: TaskProgressCardProps) => {
   const bgColor = isDark ? colors.dark : colors.lightGrey;
   const roundedClass = getRoundedClass(roundedCorner);
@@ -34,8 +36,13 @@ export const TaskProgressCardComponent = ({
     <div
       className={`bg-${bgColor} ${roundedClass} p-4 text-white flex justify-between items-center w-full ${className}`}
       style={{ backgroundColor: bgColor }}
+      data-testid={dataTestId}
     >
-      {text && <span className="mr-4">{text}</span>}
+      {text && (
+        <span className="mr-4" data-testid={`${dataTestId}-text`}>
+          {text}
+        </span>
+      )}
       {children}
     </div>
   );

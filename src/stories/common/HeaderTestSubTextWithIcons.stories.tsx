@@ -1,4 +1,4 @@
-import { HeaderTestSubTextWithIcons } from "../../components/common/HeaderTextSubTextWithIcons";
+import { HeaderTextSubTextWithIcons } from "../../components/common/HeaderTextSubTextWithIcons";
 import colors from "@/utils/colors";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FaInfo, FaUser } from "react-icons/fa";
@@ -6,9 +6,9 @@ import { AiOutlineInfoCircle, AiOutlineUser } from "react-icons/ai";
 import { FaClock } from "react-icons/fa";
 import { LuCalendarRange } from "react-icons/lu";
 
-const meta: Meta<typeof HeaderTestSubTextWithIcons> = {
-  title: "Components/HeaderTestSubTextWithIcons",
-  component: HeaderTestSubTextWithIcons,
+const meta: Meta<typeof HeaderTextSubTextWithIcons> = {
+  title: "Components/HeaderTextSubTextWithIcons",
+  component: HeaderTextSubTextWithIcons,
   tags: ["autodocs"],
   argTypes: {
     headerText: {
@@ -80,7 +80,7 @@ const meta: Meta<typeof HeaderTestSubTextWithIcons> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof HeaderTestSubTextWithIcons>;
+type Story = StoryObj<typeof HeaderTextSubTextWithIcons>;
 
 export const Default: Story = {
   args: {

@@ -10,6 +10,7 @@ interface HeaderTextSubTextProps {
   subHeaderSize?: string;
   subHeaderColor?: string;
   className?: string;
+  dataTestId?: string;
 }
 
 export const HeaderTextSubTextComponent = ({
@@ -21,9 +22,10 @@ export const HeaderTextSubTextComponent = ({
   subHeaderSize = "0.9rem",
   subHeaderColor = colors.dark,
   className = "",
+  dataTestId = "header-text-sub-text",
 }: HeaderTextSubTextProps) => {
   return (
-    <Box className={`p-4 ${className}`}>
+    <Box className={`p-4 ${className}`} data-testid={dataTestId}>
       <Typography
         variant="h5"
         style={{
@@ -31,6 +33,7 @@ export const HeaderTextSubTextComponent = ({
           fontSize: headerSize,
           color: headerColor,
         }}
+        data-testid={`${dataTestId}-header`}
       >
         {headerText}
       </Typography>
@@ -41,6 +44,7 @@ export const HeaderTextSubTextComponent = ({
           color: subHeaderColor,
           marginLeft: "0.2rem",
         }}
+        data-testid={`${dataTestId}-subtext`}
       >
         {subText}
       </Typography>
@@ -52,6 +56,7 @@ export const HeaderTextSubTextComponent = ({
             color: subHeaderColor,
             marginLeft: "0.2rem",
           }}
+          data-testid={`${dataTestId}-ternary`}
         >
           {ternaryText}
         </Typography>

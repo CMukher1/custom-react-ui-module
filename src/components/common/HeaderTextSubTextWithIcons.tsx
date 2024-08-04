@@ -13,9 +13,10 @@ interface HeaderTestSubTextWithIconsProps {
   subHeaderSize?: string;
   subHeaderColor?: string;
   className?: string;
+  dataTestId?: string;
 }
 
-export const HeaderTestSubTextWithIcons = ({
+export const HeaderTextSubTextWithIcons = ({
   headerText,
   subText,
   SubIcon,
@@ -26,9 +27,10 @@ export const HeaderTestSubTextWithIcons = ({
   subHeaderSize = "0.9rem",
   subHeaderColor = colors.dark,
   className = "",
+  dataTestId = "header-text-sub-text-with-icons",
 }: HeaderTestSubTextWithIconsProps) => {
   return (
-    <Box className={`p-4 ${className}`}>
+    <Box className={`p-4 ${className}`} data-testid={dataTestId}>
       <Typography
         variant="h5"
         style={{
@@ -36,14 +38,20 @@ export const HeaderTestSubTextWithIcons = ({
           fontSize: headerSize,
           color: headerColor,
         }}
+        data-testid={`${dataTestId}-header`}
       >
         {headerText}
       </Typography>
-      <Box display="flex" alignItems="center">
+      <Box
+        display="flex"
+        alignItems="center"
+        data-testid={`${dataTestId}-subtext-container`}
+      >
         <SubIcon
           color={subHeaderColor}
           fontSize={subHeaderSize}
           className="m-[0.2rem]"
+          data-testid={`${dataTestId}-subicon`}
         />
         <Typography
           variant="body1"
@@ -52,17 +60,24 @@ export const HeaderTestSubTextWithIcons = ({
             color: subHeaderColor,
             marginLeft: "0.2rem",
           }}
+          data-testid={`${dataTestId}-subtext`}
         >
           {subText}
         </Typography>
       </Box>
 
       {ternaryText && (
-        <Box display="flex" alignItems="center" fontSize={subHeaderSize}>
+        <Box
+          display="flex"
+          alignItems="center"
+          fontSize={subHeaderSize}
+          data-testid={`${dataTestId}-ternary-container`}
+        >
           <TernaryIcon
             color={subHeaderColor}
             fontSize={subHeaderSize}
             className="m-[0.2rem]"
+            data-testid={`${dataTestId}-ternary-icon`}
           />
           <Typography
             variant="body1"
@@ -71,6 +86,7 @@ export const HeaderTestSubTextWithIcons = ({
               color: subHeaderColor,
               marginLeft: "0.2rem",
             }}
+            data-testid={`${dataTestId}-ternary-text`}
           >
             {ternaryText}
           </Typography>
